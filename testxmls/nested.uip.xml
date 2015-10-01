@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:<event id="public.request.interface">,<property name="class" value="ui.MyInterface"/>-->
+<!--Description:ui.MyInterface definition-->
+
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+            version="1.0">
+    <interfaces>
+        <interface class="nested">
+            <container>
+
+                <!--@todo custom defined types -->
+                <element class="public.text">
+                    <position>
+                        <properties names="x,y,width,height" values="0,0,100,75"/>
+                    </position>
+                    <property name="text" value="Nested Interface"/>
+                </element>
+
+                <element class="public.media.still">
+                    <position>
+                        <property name="x" value="0"/>
+                        <property name="y" value="75"/>
+                        <property name="width" value="100"/>
+                        <property name="height" value="75"/>
+                        <!--<properties names="x,y,width,height" values="150,200,100,100"/>-->
+                    </position>
+                    <property name="url" value="img1.svg.png"/>
+                    <behavior trigger="pointer.click" action="iiii">
+                        <properties names="SECRET" values="this should not be sent"/>
+
+                    </behavior>
+                </element>
+
+            </container>
+        </interface>
+    </interfaces>
+
+</UIProtocol>

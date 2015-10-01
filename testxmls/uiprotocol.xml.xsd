@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2008, Vaclav Slovacek. All Rights Reserved.
+  ~
+  ~ Product: UIProtocol Java
+  ~
+  ~ This source-code is released under following license:
+  ~
+  ~ - no release outside i2home project is allowed
+  ~ - this copyright notice must be placed unmodified in every file derived from this source code
+  -->
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="UIProtocol" type="UIProtocolType">
+	</xs:element>
+
+	<xs:complexType name="containerType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element type="positionType" name="position" maxOccurs="1"/>
+			<xs:element type="layoutType" name="layout"/>
+			<xs:element type="elementType" name="element"/>
+			<xs:element type="containerType" name="container"/>
+			<xs:element type="behaviorType" name="behavior"/>
+			<xs:element type="propertiesType" name="properties"/>
+			<xs:element type="propertyType" name="property"/>
+		</xs:choice>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="id" use="optional"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="class" use="optional" default="public.container"/>
+		<!--<xs:attribute type="fullyQualifiedIdentifier" name="style"/>-->
+		<xs:attribute type="fullyQualifiedIdentifierType" name="model"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="style"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="position"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="layout"/>
+		<!--<xs:attribute type="fullyQualifiedIdentifier" name="children" use="required"/>-->
+	</xs:complexType>
+
+	<xs:complexType name="elementType">
+		<xs:choice maxOccurs="unbounded" minOccurs="0">
+			<xs:element type="positionType" name="position" maxOccurs="1"/>
+			<xs:element type="styleType" name="style" maxOccurs="1"/>
+			<xs:element type="propertiesType" name="properties"/>
+			<xs:element type="propertyType" name="property"/>
+			<xs:element type="behaviorType" name="behavior"/>
+		</xs:choice>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="id" use="optional"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="class" use="required"/>
+		<!--<xs:attribute type="fullyQualifiedIdentifier" name="style"/>-->
+		<xs:attribute type="fullyQualifiedIdentifierType" name="model"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="style"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="position"/>
+	</xs:complexType>
+
+	<xs:complexType name="layoutType">
+		<xs:choice maxOccurs="unbounded" minOccurs="0">
+			<xs:element type="propertyType" name="property"/>
+			<xs:element type="propertiesType" name="properties"/>
+		</xs:choice>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="class" use="required"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="model" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="positionType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element type="propertyType" name="property"/>
+			<xs:element type="propertiesType" name="properties"/>
+		</xs:choice>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="model"/>
+		<!--<xs:attribute type="fullyQualifiedIdentifier" name="layout"/>-->
+	</xs:complexType>
+
+	<xs:complexType name="styleType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element type="propertyType" name="property"/>
+			<xs:element type="propertiesType" name="properties"/>
+		</xs:choice>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="model"/>
+		<!--<xs:attribute type="fullyQualifiedIdentifier" name="layout"/>-->
+	</xs:complexType>
+
+	<!--<xs:simpleType name="triggerType">
+
+		<xs:restriction base="fullyQualifiedIdentifier">
+			<xs:simpleType>
+				<xs:restriction base="fullyQualifiedIdentifier">
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:enumeration value="public.pointer.clicked"/>
+			<xs:enumeration value="public.pointer.pressed"/>
+			<xs:enumeration value="public.pointer.released"/>
+		</xs:restriction>
+	</xs:simpleType>-->
+
+	<xs:simpleType name="triggerType2">
+
+		<xs:union memberTypes="fullyQualifiedIdentifierType triggerDefinedConstants">
+		</xs:union>
+
+		<!--<xs:union>
+			<xs:simpleType id="fullyQualifiedIdentifier">
+				<xs:restriction base="fullyQualifiedIdentifier"></xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType
+			<xs:enumeration value="public.pointer.clicked"/>
+			<xs:enumeration value="public.pointer.pressed"/>
+			<xs:enumeration value="public.pointer.released"/>
+		</xs:union>
+		<xs:restriction base="fullyQualifiedIdentifier">
+
+		</xs:restriction>-->
+	</xs:simpleType>
+
+	<xs:simpleType name="triggerDefinedConstants">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="public.pointer.clicked"/>
+			<xs:enumeration value="public.pointer.pressed"/>
+			<xs:enumeration value="public.pointer.released"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="behaviorType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element type="propertyType" name="property"/>
+			<xs:element type="propertiesType" name="properties"/>
+		</xs:choice>
+		<xs:attribute type="triggerType2" name="trigger" use="required"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="action" use="required"/>
+		<xs:attribute type="boolean" name="implicit" use="optional" default="true"/>
+	</xs:complexType>
+
+	<xs:complexType name="UIProtocolType">
+		<xs:choice maxOccurs="unbounded" minOccurs="1">
+			<xs:element type="actionsType" name="actions" maxOccurs="1"/>
+			<xs:element type="eventsType" name="events" maxOccurs="1"/>
+			<xs:element type="interfacesType" name="interfaces" maxOccurs="1"/>
+			<xs:element type="modelsType" name="models" maxOccurs="1"/>
+		</xs:choice>
+		<!-- todo introduce special type for version -->
+		<xs:attribute type="xs:float" name="version" use="required"/>
+ 	</xs:complexType>
+
+	<xs:complexType name="actionsType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element type="actionType" name="action"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="eventsType">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element type="eventType" name="event"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="interfacesType">
+		<xs:sequence>
+			<xs:element type="interfaceType" name="interface" maxOccurs="unbounded" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="modelsType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element type="modelType" name="model"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="actionType">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element type="modelType" name="model"/>
+		</xs:sequence>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="id" use="required"/>
+		<xs:attribute type="actionExecutionType" name="execution" default="server"/>
+		<xs:attribute type="actionBlockType" name="block" default="none"/>
+	</xs:complexType>
+
+	<!-- @todo consider complex type of properties -->
+	<xs:complexType name="eventType">
+		<xs:choice maxOccurs="unbounded" minOccurs="0">
+			<xs:element type="resolvedPropertiesType" name="properties"/>
+			<xs:element type="resolvedPropertyType" name="property"/>
+		</xs:choice>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="id" use="required"/>
+		<xs:attribute type="pathIdentifierType" name="stamp" use="optional"/>
+		<xs:attribute type="xs:int" name="time" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="interfaceType">
+		<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element type="elementType" name="element" minOccurs="0"/>
+			<xs:element type="containerType" name="container" minOccurs="0"/>
+		</xs:choice>
+		<xs:attribute type="xs:string" name="class" use="required"/>
+		<xs:attribute type="interfaceComponentType" name="type" use="optional"/>
+		<xs:attribute type="fullyQualifiedIdentifierType" name="children" use="optional"/> <!-- @todo make required when type="conteiner" -->
+	</xs:complexType>
+
+	<xs:complexType name="modelType" mixed="true">
+		<xs:sequence>
+			<xs:choice maxOccurs="1" minOccurs="0">
+				<xs:element type="variantType" name="variant"/>
+			</xs:choice>
+			<xs:choice maxOccurs="unbounded" minOccurs="0">
+				<xs:element type="propertiesType" name="properties"/>
+				<xs:element type="propertyType" name="property"/>
+			</xs:choice>
+		</xs:sequence>
+
+		<xs:attribute type="xs:string" name="id" use="required"/>
+		<xs:attribute type="modelUpdateType" name="update" use="optional" default="complete"/>
+		<xs:attribute type="xs:string" name="interpolation" use="optional" default="public.immediate"/>
+		<xs:attribute type="xs:int" name="duration" use="optional" default="0"/>
+		<!--<xs:attribute type="variantType" name="variant" use="optional"/>-->
+		<xs:attribute type="fullyQualifiedIdentifierType" name="model" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="propertyType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="pathIdentifierType" name="name" use="required"/>
+				<xs:attribute type="xs:string" name="value" use="optional"/>
+				<xs:attribute type="keyType" name="key" use="optional"/>
+				<xs:attribute type="fullyQualifiedIdentifierType" name="converter" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="propertiesType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="pathIdentifiers" name="names" use="required"/>
+				<xs:attribute type="xs:string" name="values" use="optional"/>
+				<xs:attribute type="pathIdentifierType" name="domain" use="optional"/>
+				<xs:attribute type="keysType" name="keys" use="optional"/>
+				<xs:attribute type="xs:string" name="separator" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="resolvedPropertyType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="pathIdentifierType" name="name" use="required"/>
+				<xs:attribute type="xs:string" name="value" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="resolvedPropertiesType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute type="pathIdentifiers" name="names" use="required"/>
+				<xs:attribute type="xs:string" name="values" use="optional"/>
+				<xs:attribute type="fullyQualifiedIdentifierType" name="domain" use="optional"/>
+				<xs:attribute type="xs:string" name="separator" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="identifierType">
+		<xs:restriction base="xs:string">
+			<!-- @todo add support for unicode -->
+			<xs:pattern value="[a-zA-Z_$][a-zA-Z0-9_$]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="fullyQualifiedIdentifierType">
+		<xs:restriction base="xs:string">
+			<!-- @todo add support for unicode -->
+			<xs:pattern value="[a-zA-Z_$][a-zA-Z0-9_$]*(\.[a-zA-Z_$][a-zA-Z0-9_$]*)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="fullyQualifiedIdentifiersType">
+		<xs:restriction base="xs:string">
+			<!-- @todo add support for unicode -->
+			<!-- @todo make nicer ... this is really an example how quite good developer can create a monster -->
+			<xs:pattern value="[a-zA-Z_$][a-zA-Z0-9_$]*(\.[a-zA-Z_$][a-zA-Z0-9_$]*)*(,[a-zA-Z_$][a-zA-Z0-9_$]*(\.[a-zA-Z_$][a-zA-Z0-9_$]*)*)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="pathIdentifierType">
+		<xs:restriction base="xs:string">
+			<!-- @todo add support for unicode -->
+			<xs:pattern value="[a-zA-Z0-9_$]+(\.[a-zA-Z0-9_$]+)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="pathIdentifiers">
+		<xs:restriction base="xs:string">
+			<!-- @todo add support for unicode -->
+			<!-- @todo make nicer ... this is really an example how quite good developer can create a monster -->
+			<xs:pattern
+					value="[a-zA-Z0-9_$]+(\.[a-zA-Z0-9_$]+)*(,[a-zA-Z0-9_$]+(\.[a-zA-Z0-9_$]+)*)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="variantType" mixed="true">
+		<xs:choice maxOccurs="unbounded" minOccurs="1">
+			<xs:element type="resolvedPropertiesType" name="properties"/>
+			<xs:element type="resolvedPropertyType" name="property"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<!--<xs:simpleType name="localeName">
+		<xs:restriction base="xs:string">
+			--><!-- @todo add support for variant --><!--
+			<xs:pattern value="[a-z]{2}([A-Z]{2})?"/>
+		</xs:restriction>
+	</xs:simpleType>-->
+
+	<xs:simpleType name="interfaceComponentType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="container"/>
+			<xs:enumeration value="element"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="modelUpdateType">
+		<xs:restriction base="xs:string">
+			<!-- @todo delete deprecated update types -->
+			<xs:enumeration value="complete"/>
+			<xs:enumeration value="partial"/>
+			<xs:enumeration value="component"/>
+			<xs:enumeration value="recovery"/>
+			<xs:enumeration value="invalidate"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="actionExecutionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="client"/>
+			<xs:enumeration value="server"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="actionBlockType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="trigger"/>
+			<xs:enumeration value="component"/>
+			<xs:enumeration value="action"/>
+			<xs:enumeration value="window"/>
+			<xs:enumeration value="application"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- @todo define properly the -->
+	<xs:simpleType name="keyType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[\w\.]*:[\w\.]+(:[\w\.]+(,[\w\.]+)*)*"/>
+			<!--<xs:pattern value=":?[a-zA-Z0-9_$]+(:[a-zA-Z0-9_$]+)*"/>-->
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="keysType">
+		<xs:restriction base="xs:string">
+			<!-- @todo support for more labels -->
+			<xs:pattern value=":?[a-zA-Z0-9_$]+(:[a-zA-Z0-9_$]+)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="boolean">
+		<xs:restriction base="xs:boolean">
+			<xs:enumeration value="true"/>
+			<xs:enumeration value="false"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:root-->
+<!--Description:Root interface definition-->
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+            version="1.0">
+
+    <interfaces>
+        <interface class="root">
+            <container>
+
+                <!--@todo custom defined types -->
+
+                <element class="public.text.heading.ERR" model="testmodel">
+                    <style>
+                        <properties names="font.size,font.color" values="26,red"/>
+                    </style>
+                    <position>
+                        <properties names="x,y,width,height" values="70;120;200;150" separator=";"/>
+                    </position>
+                    <!--<property name="text" key="textmodel:text:upper">Model overriden</property>  -->
+                </element>
+
+                <!--INTERFACE BELOW SHOULD STAY IN COMMENT, server does not have reply when application requests this interface-->
+                <!--
+                <element class="INVALID">
+                </element>
+                -->
+
+                <element class="public.text.emphasis">
+                    <style model="stylemodel">
+                        <properties names="font.size" values="19"/>
+                        <property name="x" value="19"/>           <!--invalid element in style tag-->
+                    </style>
+                    <position>
+                        <properties names="x,y,width,height" values="10,10,300,100"/>
+                    </position>
+                    <property name="text" value="1+1=2" key="textmodel:text:capitalE:capital"/>
+                </element>
+
+                <element class="public.input">
+                    <position>
+                        <property name="x" value="20"/>
+                        <property name="y" value="40"/>
+                        <property name="width" value="100"/>
+                        <property name="height" value="70"/>
+                    </position>
+                    <property name="text" value="TYPE HERE..."/>
+                    <behavior trigger="input.text" action="iiii">
+                        <properties names="SECRET" values="this should not be sent"/>
+
+                    </behavior>
+                </element>
+
+                <element class="public.input">
+                    <position>
+                        <property name="x" value="20"/>
+                        <property name="y" value="200"/>
+                        <property name="width" value="100"/>
+                        <property name="height" value="70"/>
+                    </position>
+                    <property name="text" value="EDIT ME..."/>
+                    <behavior trigger="input.text" action="empty">
+
+                    </behavior>
+                </element>
+
+
+                <element class="public.button">
+                    <style>
+                        <properties names="font.family,font.size" values="cursive,14"/>
+                    </style>
+                    <position>
+                        <properties names="x,y,width,height" values="160,40,120,100"/>
+                    </position>
+                    <property name="name" value="CLICK ME"/>
+
+                    <behavior trigger="pointer.click" action="AXXX">
+                        <properties names="id,dd,fd" values="VXXX,CYYY,LVVV"/>
+
+                    </behavior>
+                    <behavior trigger="pointer.release" action="BXXX">
+                        <properties names="id,dd,fd" values="VXXX,CYYY,LVVV"/>
+
+                    </behavior>
+                    <!--<bahavior trigger="pointer.enter" action="BXXX"/>-->
+                </element>
+
+                <element class="public.button">
+                    <position>
+                        <properties names="x,y,width,height" values="130,210,150,60"/>
+                    </position>
+                    <property name="name" value="2 ACTIONS"/>
+                    <behavior trigger="pointer.release" action="gggg">
+                        <properties names="SECRET" values="this should not be sent"/>
+
+                    </behavior>
+
+                </element>
+
+            </container>
+        </interface>
+
+        <interface class="nested">
+            <container>
+
+                <!--@todo custom defined types -->
+                <element class="public.text">
+                    <style>
+                        <properties names="font.family,font.size,font.weight,font.color"
+                                    values="Helvetica,19,bold,purple"/>
+                    </style>
+                    <position>
+                        <properties names="x,y,width,height" values="0,0,200,75"/>
+                    </position>
+                    <property name="text" key=":title"/>
+                </element>
+
+                <element class="public.checkbox">
+                    <position>
+                        <property name="x" value="15"/>
+                        <property name="y" value="35"/>
+                        <property name="width" value="180"/>
+                        <property name="height" value="25"/>
+                        <!--<properties names="x,y,width,height" values="150,200,100,100"/>-->
+                    </position>
+                    <property name="name" key=":caption1"/>
+                </element>
+
+                <element class="public.checkbox">
+                    <position>
+                        <property name="x" value="15"/>
+                        <property name="y" value="70"/>
+                        <property name="width" value="180"/>
+                        <property name="height" value="25"/>
+                        <!--<properties names="x,y,width,height" values="150,200,100,100"/>-->
+                    </position>
+                    <property name="name" key=":caption2"/>
+                </element>
+
+                <element class="public.checkbox">
+                    <position>
+                        <property name="x" value="15"/>
+                        <property name="y" value="105"/>
+                        <property name="width" value="180"/>
+                        <property name="height" value="25"/>
+                        <!--<properties names="x,y,width,height" values="150,200,100,100"/>-->
+                    </position>
+                    <property name="name" key=":caption3"/>
+                </element>
+
+                <element class="public.button">
+                    <behavior trigger="pointer.click" action="interface.default">
+                    </behavior>
+                    <style>
+                        <properties names="font.family,font.color" values="Helvetica,blue"/>
+                    </style>
+                    <position>
+                        <properties names="x,y,width,height" values="185,90,100,40"/>
+                    </position>
+                    <property name="name" value="More"/>
+                </element>
+
+                <element class="public.button">
+                    <style>
+                        <properties names="font.family,font.color" values="Helvetica,red"/>
+                    </style>
+                    <position>
+                        <properties names="x,y,width,height" values="185,45,100,40"/>
+                    </position>
+                    <property name="name" value="Off"/>
+
+                </element>
+
+            </container>
+        </interface>
+    </interfaces>
+
+    <actions>
+        <action id="gggg" execution="client">
+            <model id="textmodel">
+                <property name="text" value="submit button pressed"/>
+                <property name="non_existing" value="should be ignored"/>
+            </model>
+            <model id="testmodel">
+                <property name="text" value="Multiple models updated"/>
+            </model>
+        </action>
+        <action id="iiii" execution="client">
+            <model id="public.application" update="partial">
+                <property name="about" value="twilight.interface"/>
+            </model>
+        </action>
+
+        <action id="empty" execution="server">
+            <model id="public.application" update="partial">
+            </model>
+        </action>
+
+        <action id="imageaction" execution="client">
+            <model id="propertymodel">
+                <property name="x" value="80"/>
+                <property name="y" value="80"/>
+            </model>
+        </action>
+
+
+        <action id="home" execution="client">
+            <model id="public.application">
+                <property name="about" value="home.interface"/>
+            </model>
+        </action>
+        <action id="interface.default" execution="client">
+            <model id="public.application">
+                <property name="about" value="root"/>
+            </model>
+        </action>
+
+        <action id="BXXX" execution="server">
+            <model id="textmodel">
+                <property name="text" value="MOUSE up"/>
+            </model>
+        </action>
+
+    </actions>
+
+    <models>
+        <model id="testmodel">
+            <property name="text" value="XXX"/>
+        </model>
+        <model id="propertymodel">
+            <property name="x" value="180"/>
+            <property name="y" value="180"/>
+        </model>
+        <model id="stylemodel">
+            <property name="font.color" value="white"/>
+            <property name="font.size" value="22"/>
+            <property name="y" value="0"/> <!--invalid property-->
+        </model>
+        <model id="textmodel">
+            <property name="text" value="this is an example of capitalized text"/>
+        </model>
+
+    </models>
+
+</UIProtocol>

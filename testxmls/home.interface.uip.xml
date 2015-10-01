@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:public.request.interface,home.interface-->
+<!--Description:Home interface definition-->
+
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+            version="1.0">
+    <interfaces>
+        <interface class="home.interface">
+            <container>
+
+                <element class="nested">
+					<position>
+						<properties names="x,y,width,height" values="10,10,310,140"/>
+					</position>
+                    <property name="title" value="CLICK BLUE BUTTON"/>
+                    <property name="caption1" value="Heating"/>
+                    <property name="caption2" value="Cooling"/>
+                    <property name="caption3" value="Fan"/>
+
+				</element>
+
+                <element class="nested">
+					<position>
+						<properties names="x,y,width,height" values="10,160,310,140"/>
+					</position>
+                    <property name="title" value="Living Room"/>
+                    <property name="caption1" value="Hi-Fi"/>
+                    <property name="caption2" value="TV"/>
+                    <property name="caption3" value="Lights"/>
+
+				</element>
+
+                <element class="nested">
+					<position>
+						<properties names="x,y,width,height" values="10,320,310,140"/>
+					</position>
+                    <property name="title" value="Kitchen"/>
+                    <property name="caption1" value="Microwave"/>
+                    <property name="caption2" value="Refridgerator"/>
+                    <property name="caption3" value="Lights"/>                  
+				</element>
+
+            </container>
+        </interface>
+    </interfaces>
+
+    
+
+</UIProtocol>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:public.request.interface,twilight.interface-->
+<!--Description:Twilight interface definition-->
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+			version="1.0">
+
+	<interfaces>
+		<interface class="twilight.interface">
+			<container>
+
+                <element class="public.text">
+                    <position>
+                        <properties names="x,y,height,width" values="10,10,80,300"/>
+                    </position>
+                    <style>
+                        <properties names="font.family,font.size,font.weight" values="Helvetica,22,bold"/>
+                    </style>
+                    <behavior trigger="pointer.click" action="list">
+                    </behavior>
+                    <property name="text" value="CLICK ON VIDEO"/>
+                </element>
+
+                <element class="public.media.video">
+                    <position>
+                        <properties names="x,y,height,width" values="10,50,220,300"/>
+                    </position>
+                    <style>
+
+                    </style>
+                    <behavior trigger="pointer.click" action="list">
+                    </behavior>
+
+                    <!--Path MUST be absolute-->
+                    <property name="url" value="file:///Users/swyna/IdeaProjects/UIProtocol Client for iPhone/src/resources/twilight.flv"/>
+                    
+                    <property name="volume" value="0.1"/>
+                </element>
+                
+                <element class="public.button">
+                    <style>
+                        <properties names="font.family,font.size" values="Helvetica,19"/>
+                    </style>
+					<position>
+						<properties names="x,y,height,width" values="10,280,45,71"/>
+					</position>
+                    <property name="name" value="Prev"/>
+
+				</element>
+
+                <element class="public.button">
+                    <style>
+                        <properties names="font.family,font.size" values="Helvetica,19"/>
+                    </style>
+					<position>
+						<properties names="x,y,height,width" values="91,280,45,138"/>
+					</position>
+                    <property name="name" value="Back"/>
+
+				</element>
+
+                <element class="public.button">
+                    <style>
+                        <properties names="font.family,font.size" values="Helvetica,19"/>
+                    </style>
+					<position>
+						<properties names="x,y,height,width" values="241,280,45,71"/>
+					</position>
+                    <property name="name" value="Next"/>
+
+				</element>
+
+                <element class="public.input">
+                    <position>
+                        <properties names="x,y,height,width" values="10,335,135,300"/>
+                    </position>
+                    <style>
+                        <properties names="font.family,font.size" values="Helvetica,17"/>
+                    </style>
+                    <property name="wordWrap" value="true"/>
+                    <property name="text" value="almost at then edn rosalies says soemthing and that part i take out off a song If somebody tells me FAST from what song did I got that part I'll post the other one right away!!!!!!! I absolutely loved it !! I﻿ can't wait to see what happens next
+I am so happy that they are all together again, and happy"/>
+                </element>
+
+			</container>
+        </interface>
+	</interfaces>
+    <actions>
+        <action id="list" execution="client">
+            <model id="public.application" update="partial">
+                <property name="about" value="list.interface"/>
+            </model>
+        </action>
+    </actions>
+</UIProtocol>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:public.request.action,AXXX-->
+<!--Description:AXXX action model-->
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+			version="1.0">
+    <actions>
+        <action id="AXXX" execution="server">
+            <model id="textmodel">
+                <property name="text" value="Two actions"/>
+            </model>
+        </action>
+        
+    </actions>
+
+</UIProtocol>

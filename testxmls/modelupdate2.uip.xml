@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+			version="1.0">
+    <models>
+        <model id="testmodel" update="partial">
+            <property name="text" value="XoXoX"/>
+        </model>
+        <model id="propertymodel">
+            <property name="x" value="80"/>
+            <property name="y" value="200"/>
+        </model>
+    </models>
+
+</UIProtocol>

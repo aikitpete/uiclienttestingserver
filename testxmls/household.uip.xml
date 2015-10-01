@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:<event id="public.request.interface">,<property name="class" value="household"/>-->
+<!--Description:new.interface.definition-->    
+
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+            version="1.0">
+    <interfaces>
+        <interface class="household">
+            <container>
+
+                <element class="nested">
+					<position>
+						<properties names="x,y,width,height" values="20,300,100,150"/>
+					</position>
+                    <property name="title" value="test of nested interface"/>
+                    <property name="caption1" value="heating"/>
+                    <property name="caption2" value="text"/>
+				</element>
+
+                <element class="public.text" model="testmodel">
+                    <position>
+                        <properties names="x,y,width,height" values="70,120,100,150"/>
+                    </position>
+                    <property name="text" value="New Text Field"/>
+                </element>
+
+                <element class="public.checkbox">
+                    <position>
+                        <properties names="x,y,width,height" values="20,160,150,200"/>
+                    </position>
+                    <property name="name" value="New Checkbox"/>
+                </element>
+
+                <element class="public.text">
+                    <position>
+                        <properties names="x,y,width,height" values="30,30,200,100"/>
+                    </position>
+                    <property name="text" value="1+1=2" key="textmodel:text:capital"/>
+                </element>
+
+                <element class="public.text">
+                    <position>
+                        <properties names="x,y,width,height" values="100,190,150,100"/>
+                    </position>
+                    <property name="text" value="cvut fakulta elektrotechnicka" key="testmodel:text:lower"/>
+                </element>
+
+
+                <element class="public.button">
+					<position>
+						<properties names="x,y,width,height" values="90,70,160,40"/>
+					</position>
+                    <property name="name" value="BACK TO PREVIOUS"/>
+                    <behavior trigger="pointer.click" action="back">
+                        <properties names="SECRET" values="this should not be sent"/>
+
+                    </behavior>
+				</element>
+                         
+            </container>
+        </interface>
+    </interfaces>
+
+    <actions>
+        <action id="back" execution="client">
+            <model id="public.application">
+                <property name="about" value="root"/>
+            </model>
+        </action>
+    </actions>
+
+</UIProtocol>

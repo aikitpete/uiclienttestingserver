@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:<event id="AXXX"-->
+<!--Description:Application model-->
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+			version="1.0">
+
+    <models>
+        <model id="public.application">
+            <property name="about" value="household"/>
+        </model>
+
+    </models>
+
+</UIProtocol>

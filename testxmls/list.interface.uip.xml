@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Expressions:public.request.interface,list.interface-->
+<!--Description:List interface definition-->
+<UIProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="uiprotocol.xml.xsd"
+            version="1.0">
+
+    <interfaces>
+
+        <interface class="listfield">
+            <container>
+                <element class="public.media.still">
+                    <position>
+                        <properties names="x,y,width,height" values="10,5,100,95"/>
+                    </position>
+                    <property name="url" key=":url"/>
+                </element>
+
+                <element class="public.text">
+                    <position>
+                        <properties names="x,y,width,height" values="120,5,170,20"/>
+                    </position>
+                    <style>
+                        <property name="font.size" value="16"/>
+                        <property name="font.family" value="Helvetica"/>
+                        <property name="font.weight" value="bold"/>
+                    </style>
+                    <property name="text" key=":title"/>
+                </element>
+
+                <element class="public.text">
+                    <position>
+                        <properties names="x,y,width,height" values="120,30,170,55"/>
+                    </position>
+                    <style>
+                        <property name="font.size" value="13"/>
+                        <property name="font.family" value="Helvetica"/>
+                    </style>
+                    <property name="text" key=":description"/>
+                </element>
+
+            </container>
+        </interface>
+
+        <interface class="list.interface">
+            <container>
+
+                <element class="listfield">
+                    <position>
+                        <properties names="x,y,width,height" values="0,0,310,100"/>
+                    </position>
+                    <property name="url" value="http://i2.ytimg.com/vi/1RKFRVkCgpg/default.jpg"/>
+                    <property name="title" value="CLICK HERE"/>
+                    <property name="description" value="Music video by Wale performing Pretty Girls. (C) 2010 Allido/Interscope "/>
+                    <behavior trigger="pointer.click" action="home">
+                    </behavior>
+                </element>
+
+                <element class="listfield">
+                    <position>
+                        <properties names="x,y,width,height" values="0,120,310,100"/>
+                    </position>
+                    <property name="url" value="http://i1.ytimg.com/vi/pBI3lc18k8Q/default.jpg"/>
+                    <property name="title" value="Skerritt Bwoy"/>
+                    <property name="description" value="Everything you need to know about daggering. http://www.thefader.com "/>
+                </element>
+
+                <element class="listfield">
+                    <position>
+                        <properties names="x,y,width,height" values="0,240,310,100"/>
+                    </position>
+                    <property name="url" value="http://i1.ytimg.com/vi/TkoWp7Ybtus/default.jpg"/>
+                    <property name="title" value="MysteryGuitarMan"/>
+                    <property name="description" value="THATS NOT ME SINGING. Stop asking -.- About 24hrs of editing :) Thank you Mystery"/>
+                </element>
+
+                <element class="listfield">
+                    <position>
+                        <properties names="x,y,width,height" values="0,360,310,100"/>
+                    </position>
+                    <property name="url" value="http://i3.ytimg.com/vi/b0GAmP9wu20/default.jpg"/>
+                    <property name="title" value="World Record"/>
+                    <property name="description" value="Comedy.com's WTF TV hits the streets to set a world record for how many times one"/>
+
+                </element>
+
+            </container>
+        </interface>
+    </interfaces>
+
+
+
+    <actions>
+        <action id="home" execution="client">
+            <model id="public.application" update="partial">
+                <property name="about" value="home.interface"/>
+            </model>
+        </action>
+    </actions>
+</UIProtocol>
